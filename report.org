@@ -1,0 +1,146 @@
+#+latex_compiler: xelatex
+#+LATEX_HEADER: \usepackage{ctex}
+
+\[
+x^2 + y^2 = z^2
+\]
+
+* 实验报告
+** 整体算法设计
+使用 KMP 为基础字符串匹配算法，以 c 语言为编程语言，使用 pthread 作为线程库实现多线程并行以及同步。
+并行算法的设计使用了生产者消费者思想，由一个生产者线程和多个消费者线程并行。
+- 模式串的预处理在所有匹配开始前完成。
+- 生产者负责从文件读取文本数据，分配内存，将数据交给消费者。
+- 消费者负责运行 KMP 算法对文本串进行匹配，匹配完成后释放内存。
+
+** 算法细节
+*** KMP 算法主体
+
+#+BEGIN_SRC C
+  pi[0] = 0;
+  int j = 0;
+  for (int i = 1; i < pattern_len; i++) {
+      while (j > 0 && pattern[i] != pattern[j]) {
+          j = pi[j - 1];
+      }
+      if (pattern[i] == pattern[j]) {
+          j++;
+      }
+      pi[i] = j;
+  }
+  int i = 0;
+  int j = 0;
+  while (i < text_len) {
+      if (pattern[j] == text_buf[i]) {
+          i++;
+          j++;
+      }
+      if (j == pattern_len) {
+          match_pos = 1;
+          match_flag = 1;
+          break;
+          j = pi[j - 1];
+      } else if (i < text_len && pattern[j] != text_buf[i]) {
+          if (j != 0)
+              j = pi[j - 1];
+          else
+              i++;
+      }
+   }
+#+END_SRC
+
+*** 生产者线程设计
+生产者线程持有文本文件的指针，每次分配一个固定大小的 buffer，并从文件中读取相应长度的数据。
+这里使用一个栈来储存读取到的数据所在内存的指针，当栈满时停止读取并等待栈中重新空出空间。
+
+*** 消费者线程设计
+消费者等待生产者向栈中存放可消费的数据，当栈非空时，消费者从栈中取出指向文本串的指针，随后运行 KMP 算法进行匹配。
+匹配完成后释放这段内存，然后继续观察栈中是否存在数据。
+
+*** 同步机制
+- 生产者和消费者之间的通信使用了两个信号量：can-produce 和 can-consum。
+- 当生产者向将数据压栈后，会发送 can-consume 信号，等待该信号的消费者线程将被唤醒。若生产者发现栈已满时会进入等待状态。
+- 消费者被唤醒后会弹栈并发送 can-produce 信号，唤醒生产者继续生产数据。若消费者发现栈空时，会进入等待状态。
+- 由于消费者会无止境的等待数据产生，无法自己停止，所以当生产者读取完文本文件中的所有数据后，会向栈中存入空指针，作为算法结束的信号。
+
+#+BEGIN_SRC C
+  /* 生产者中的同步代码 */
+  pthread_mutex_lock(&lock_produce);
+  while (produced_done == THREAD_COUNT) {
+      pthread_cond_wait(&cond_can_produce, &lock_produce);
+  }
+  produced_text[produced_done] = text_buf;
+  produced_text_len[produced_done] = text_len;
+  produced_done++;
+  pthread_cond_broadcast(&cond_can_consume);
+  pthread_mutex_unlock(&lock_produce);
+
+  /* 消费者中的同步代码 */
+  pthread_mutex_lock(&lock_produce);
+  while (produced_done == 0) {
+      pthread_cond_wait(&cond_can_consume, &lock_produce);
+  }
+  produced_done--;
+  char *text_buf = produced_text[produced_done];
+  size_t text_len = produced_text_len[produced_done];
+  pthread_cond_broadcast(&cond_can_produce);
+  pthread_mutex_unlock(&lock_produce);
+#+END_SRC
+
+** 任务一
+*** 算法设计
+任务一只有一个文本文件，模式串数量较少且长度较短。先对模式串进行 KMP 预处理，生产者分块读取文本文件。
+由于分块读取会导致每一块边界部分无法完整匹配，故在读取时相邻两块会重叠模式串的长度，保证不会有漏匹配的地方。
+*** 运行结果
+- baseline 使用单一线程进行文件读取和匹配
+- parallel 使用一个生产者线程和四个消费者线程
+
+#+BEGIN_SRC
+13 20982498 35901134 39504287 44946940 71538355 84191125 164723534 197303958 243663620 250374268 277422739 288735685 4702176
+5 14993660 82070361 239277670 239277701 310623196
+13 58073627 62927907 68904345 81874645 90535430 116989816 197027354 201787031 202690328 251671336 275552765 290336756 304701804
+2 9011186 149988881
+30 60236795 73825887 76201254 79403129 97545446 99946557 127039537 128533691 132462539 136319663 138100057 142813596 143407861 153499833 162598886 194493184 209326621 215936807 217556730 227313301 229669003 231387661 241985703 252800963 273738609 277769909 281029681 281251662 296729142 304578529
+79 10650 9056598 9056601 9056604 9056607 9056610 18302949 18302952 25617593 54172365 54172368 54976709 54976712 54976715 54976718 54976721 54250103 59491060 59491063 62113813 65139843 65139846 63511900 63511903 63511906 63511909 63511912 91655663 94142642 94142645 94142648 94142651 94142654 107388590 107388593 108422191 118692150 119673845 139976691 139976694 157967812 171821559 171821562 176285028 191378368 191378371 192574238 201757662 201757665 201757668 201757671 201757674 209381211 214946578 222388380 249146475 249146478 252376366 264740735 266923816 275200115 275200118 275200121 275200124 275200127 286334095 286334098 289506180 289506183 289506186 289506189 289506192 290099277 294269855 294269858 294269861 294269864 294269867 307270655
+baseline总用时: 7.765637 秒
+parallel总用时: 2.195714 秒
+#+END_SRC
+
+** 任务二
+*** 算法设计
+任务二需要检查一个目录下的所有文件是否存在病毒片段，需要递归的遍历整个目录，遇到文件就创建一组生产者和消费者线程对该文件进行检查。
+*** 运行结果
+- baseline 使用单一线程进行文件读取和匹配
+- parallel 使用一个生产者线程和四个消费者线程
+
+#+BEGIN_SRC
+../data/software_antivirus/opencv-4.10.0/platforms/wince/readme.md virus10.bin
+../data/software_antivirus/opencv-4.10.0/platforms/ios/ios_make.bin virus04.bin virus06.bin virus08.bin virus10.bin
+../data/software_antivirus/opencv-4.10.0/data/lbpcascades/lbpcascade_frontalface_improved.xml virus02.bin virus04.bin
+../data/software_antivirus/opencv-4.10.0/cmake/android/android_gradle_projects.cmake virus02.bin
+../data/software_antivirus/opencv-4.10.0/doc/js_tutorials/js_setup/js_setup/js_setup.markdown virus05.bin
+../data/software_antivirus/opencv-4.10.0/doc/tutorials/gpu/gpu-basics-similarity/gpu_basics_similarity.markdown virus07.bin
+../data/software_antivirus/opencv-4.10.0/doc/tutorials/objdetect/aruco_board_detection/aruco_board_detection.markdown virus08.bin
+../data/software_antivirus/opencv-4.10.0/3rdparty/openjpeg/openjp2/t2.h virus04.bin
+../data/software_antivirus/opencv-4.10.0/modules/stitching/src/blenders.cpp virus08.bin virus09.bin
+../data/software_antivirus/opencv-4.10.0/modules/imgproc/CMakeLists.txt virus09.bin
+../data/software_antivirus/opencv-4.10.0/modules/python/bindings/import.bin virus03.bin virus05.bin virus07.bin virus09.bin
+../data/software_antivirus/opencv-4.10.0/modules/core/include/opencv2/core/ocl.hpp virus01.bin
+../data/software_antivirus/opencv-4.10.0/modules/imgcodecs/src/grfmt_exr.cpp virus06.bin virus10.bin
+../data/software_antivirus/opencv-4.10.0/apps/version/version_control.bin virus01.bin virus04.bin virus07.bin virus10.bin
+../data/software_antivirus/opencv-4.10.0/apps/model-diagnostics/model_diagnostics.cpp virus06.bin
+../data/software_antivirus/opencv-4.10.0/include/opencv2/opencv.bin virus03.bin virus05.bin virus07.bin virus09.bin
+../data/software_antivirus/opencv-4.10.0/samples/data/aloeL.jpg virus01.bin virus05.bin
+../data/software_antivirus/opencv-4.10.0/samples/data/ela_original.jpg virus03.bin virus07.bin
+../data/software_antivirus/opencv-4.10.0/samples/va_intel/software.bin virus01.bin virus02.bin virus03.bin virus05.bin virus08.bin
+../data/software_antivirus/opencv-4.10.0/samples/gpu/hog.cpp virus03.bin
+baseline总用时: 12.362963 秒
+parallel总用时: 6.465649 秒
+#+END_SRC
+
+** 总结
+*** 性能提升
+设计的算法在两个任务上相比 baseline 均达到了 2 到 3 倍的提升。若继续增加线程数可能会有更好的提升效果。
+
+*** 改进空间
+任务二中因为文件数量多，每个新文件都需要重新创建线程，可能会浪费时间。可以增加一个遍历目录的线程作为原本生产者的前置生产者，但这样的实现需要复杂的同步，且会引入新的数据竞争，目前没有想到很好的实现方法。

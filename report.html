@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-01 四 23:05 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="yhu" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8ba22a9">1. 实验报告</a>
+<ul>
+<li><a href="#org817b2cf">1.1. 整体算法设计</a></li>
+<li><a href="#org61d1d01">1.2. 算法细节</a>
+<ul>
+<li><a href="#orgf8c2b1d">1.2.1. KMP 算法主体</a></li>
+<li><a href="#org6f6864c">1.2.2. 生产者线程设计</a></li>
+<li><a href="#orgbd5a539">1.2.3. 消费者线程设计</a></li>
+<li><a href="#org593c419">1.2.4. 同步机制</a></li>
+</ul>
+</li>
+<li><a href="#orgef5aed4">1.3. 任务一</a>
+<ul>
+<li><a href="#orgc4238e5">1.3.1. 算法设计</a></li>
+<li><a href="#orgce644b7">1.3.2. 运行结果</a></li>
+</ul>
+</li>
+<li><a href="#orgfd4941c">1.4. 任务二</a>
+<ul>
+<li><a href="#org11a8544">1.4.1. 算法设计</a></li>
+<li><a href="#org415e3da">1.4.2. 运行结果</a></li>
+</ul>
+</li>
+<li><a href="#orge7909d0">1.5. 总结</a>
+<ul>
+<li><a href="#orga0e9517">1.5.1. 性能提升</a></li>
+<li><a href="#orgf847990">1.5.2. 改进空间</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+\[
+x^2 + y^2 = z^2
+\]
+</p>
+<div id="outline-container-org8ba22a9" class="outline-2">
+<h2 id="org8ba22a9"><span class="section-number-2">1.</span> 实验报告</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org817b2cf" class="outline-3">
+<h3 id="org817b2cf"><span class="section-number-3">1.1.</span> 整体算法设计</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+使用 KMP 为基础字符串匹配算法，以 c 语言为编程语言，使用 pthread 作为线程库实现多线程并行以及同步。
+并行算法的设计使用了生产者消费者思想，由一个生产者线程和多个消费者线程并行。
+</p>
+<ul class="org-ul">
+<li>模式串的预处理在所有匹配开始前完成。</li>
+<li>生产者负责从文件读取文本数据，分配内存，将数据交给消费者。</li>
+<li>消费者负责运行 KMP 算法对文本串进行匹配，匹配完成后释放内存。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org61d1d01" class="outline-3">
+<h3 id="org61d1d01"><span class="section-number-3">1.2.</span> 算法细节</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgf8c2b1d" class="outline-4">
+<h4 id="orgf8c2b1d"><span class="section-number-4">1.2.1.</span> KMP 算法主体</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">pi</span>[0] = 0;
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">int</span> <span style="color: #ff98a4;">j</span> = 0;
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">for</span> (<span style="color: #ffc777;">int</span> <span style="color: #ff98a4;">i</span> = 1; i &lt; pattern_len; i++) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">while</span> (j &gt; 0 &amp;&amp; pattern[i] != pattern[j]) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> j = pi[j - 1];
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> }
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">if</span> (pattern[i] == pattern[j]) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> j++;
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> }
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> pi[i] = j;
+<span style="color: #471a4e3a7811;"> </span> }
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">int</span> <span style="color: #ff98a4;">i</span> = 0;
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">int</span> <span style="color: #ff98a4;">j</span> = 0;
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">while</span> (i &lt; text_len) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">if</span> (pattern[j] == text_buf[i]) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> i++;
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> j++;
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> }
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">if</span> (j == pattern_len) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> match_pos = 1;
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> match_flag = 1;
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">break</span>;
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> j = pi[j - 1];
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> } <span style="color: #c099ff;">else</span> <span style="color: #c099ff;">if</span> (i &lt; text_len &amp;&amp; pattern[j] != text_buf[i]) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">if</span> (j != 0)
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> j = pi[j - 1];
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">else</span>
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> i++;
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> }
+<span style="color: #471a4e3a7811;"> </span>  }
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6f6864c" class="outline-4">
+<h4 id="org6f6864c"><span class="section-number-4">1.2.2.</span> 生产者线程设计</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+生产者线程持有文本文件的指针，每次分配一个固定大小的 buffer，并从文件中读取相应长度的数据。
+这里使用一个栈来储存读取到的数据所在内存的指针，当栈满时停止读取并等待栈中重新空出空间。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd5a539" class="outline-4">
+<h4 id="orgbd5a539"><span class="section-number-4">1.2.3.</span> 消费者线程设计</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+消费者等待生产者向栈中存放可消费的数据，当栈非空时，消费者从栈中取出指向文本串的指针，随后运行 KMP 算法进行匹配。
+匹配完成后释放这段内存，然后继续观察栈中是否存在数据。
+</p>
+</div>
+</div>
+<div id="outline-container-org593c419" class="outline-4">
+<h4 id="org593c419"><span class="section-number-4">1.2.4.</span> 同步机制</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>生产者和消费者之间的通信使用了两个信号量：can-produce 和 can-consum。</li>
+<li>当生产者向将数据压栈后，会发送 can-consume 信号，等待该信号的消费者线程将被唤醒。若生产者发现栈已满时会进入等待状态。</li>
+<li>消费者被唤醒后会弹栈并发送 can-produce 信号，唤醒生产者继续生产数据。若消费者发现栈空时，会进入等待状态。</li>
+<li>由于消费者会无止境的等待数据产生，无法自己停止，所以当生产者读取完文本文件中的所有数据后，会向栈中存入空指针，作为算法结束的信号。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #471a4e3a7811;"> </span> <span style="color: #7a88cf;">/* </span><span style="color: #7a88cf;">&#29983;&#20135;&#32773;&#20013;&#30340;&#21516;&#27493;&#20195;&#30721;</span><span style="color: #7a88cf;"> */</span>
+<span style="color: #471a4e3a7811;"> </span> pthread_mutex_lock(&amp;lock_produce);
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">while</span> (produced_done == THREAD_COUNT) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> pthread_cond_wait(&amp;cond_can_produce, &amp;lock_produce);
+<span style="color: #471a4e3a7811;"> </span> }
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">produced_text</span>[produced_done] = text_buf;
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">produced_text_len</span>[produced_done] = text_len;
+<span style="color: #471a4e3a7811;"> </span> produced_done++;
+<span style="color: #471a4e3a7811;"> </span> pthread_cond_broadcast(&amp;cond_can_consume);
+<span style="color: #471a4e3a7811;"> </span> pthread_mutex_unlock(&amp;lock_produce);
+ 
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #7a88cf;">/* </span><span style="color: #7a88cf;">&#28040;&#36153;&#32773;&#20013;&#30340;&#21516;&#27493;&#20195;&#30721;</span><span style="color: #7a88cf;"> */</span>
+<span style="color: #471a4e3a7811;"> </span> pthread_mutex_lock(&amp;lock_produce);
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #c099ff;">while</span> (produced_done == 0) {
+<span style="color: #471a4e3a7811;"> </span>   <span style="color: #471a4e3a7811;"> </span> pthread_cond_wait(&amp;cond_can_consume, &amp;lock_produce);
+<span style="color: #471a4e3a7811;"> </span> }
+<span style="color: #471a4e3a7811;"> </span> produced_done--;
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">char</span> *<span style="color: #ff98a4;">text_buf</span> = produced_text[produced_done];
+<span style="color: #471a4e3a7811;"> </span> <span style="color: #ffc777;">size_t</span> <span style="color: #ff98a4;">text_len</span> = produced_text_len[produced_done];
+<span style="color: #471a4e3a7811;"> </span> pthread_cond_broadcast(&amp;cond_can_produce);
+<span style="color: #471a4e3a7811;"> </span> pthread_mutex_unlock(&amp;lock_produce);
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgef5aed4" class="outline-3">
+<h3 id="orgef5aed4"><span class="section-number-3">1.3.</span> 任务一</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgc4238e5" class="outline-4">
+<h4 id="orgc4238e5"><span class="section-number-4">1.3.1.</span> 算法设计</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+任务一只有一个文本文件，模式串数量较少且长度较短。先对模式串进行 KMP 预处理，生产者分块读取文本文件。
+由于分块读取会导致每一块边界部分无法完整匹配，故在读取时相邻两块会重叠模式串的长度，保证不会有漏匹配的地方。
+</p>
+</div>
+</div>
+<div id="outline-container-orgce644b7" class="outline-4">
+<h4 id="orgce644b7"><span class="section-number-4">1.3.2.</span> 运行结果</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ul class="org-ul">
+<li>baseline 使用单一线程进行文件读取和匹配</li>
+<li>parallel 使用一个生产者线程和四个消费者线程</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-nil">13 20982498 35901134 39504287 44946940 71538355 84191125 164723534 197303958 243663620 250374268 277422739 288735685 4702176
+5 14993660 82070361 239277670 239277701 310623196
+13 58073627 62927907 68904345 81874645 90535430 116989816 197027354 201787031 202690328 251671336 275552765 290336756 304701804
+2 9011186 149988881
+30 60236795 73825887 76201254 79403129 97545446 99946557 127039537 128533691 132462539 136319663 138100057 142813596 143407861 153499833 162598886 194493184 209326621 215936807 217556730 227313301 229669003 231387661 241985703 252800963 273738609 277769909 281029681 281251662 296729142 304578529
+79 10650 9056598 9056601 9056604 9056607 9056610 18302949 18302952 25617593 54172365 54172368 54976709 54976712 54976715 54976718 54976721 54250103 59491060 59491063 62113813 65139843 65139846 63511900 63511903 63511906 63511909 63511912 91655663 94142642 94142645 94142648 94142651 94142654 107388590 107388593 108422191 118692150 119673845 139976691 139976694 157967812 171821559 171821562 176285028 191378368 191378371 192574238 201757662 201757665 201757668 201757671 201757674 209381211 214946578 222388380 249146475 249146478 252376366 264740735 266923816 275200115 275200118 275200121 275200124 275200127 286334095 286334098 289506180 289506183 289506186 289506189 289506192 290099277 294269855 294269858 294269861 294269864 294269867 307270655
+baseline总用时: 7.765637 秒
+parallel总用时: 2.195714 秒
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfd4941c" class="outline-3">
+<h3 id="orgfd4941c"><span class="section-number-3">1.4.</span> 任务二</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org11a8544" class="outline-4">
+<h4 id="org11a8544"><span class="section-number-4">1.4.1.</span> 算法设计</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+任务二需要检查一个目录下的所有文件是否存在病毒片段，需要递归的遍历整个目录，遇到文件就创建一组生产者和消费者线程对该文件进行检查。
+</p>
+</div>
+</div>
+<div id="outline-container-org415e3da" class="outline-4">
+<h4 id="org415e3da"><span class="section-number-4">1.4.2.</span> 运行结果</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<ul class="org-ul">
+<li>baseline 使用单一线程进行文件读取和匹配</li>
+<li>parallel 使用一个生产者线程和四个消费者线程</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-nil">../data/software_antivirus/opencv-4.10.0/platforms/wince/readme.md virus10.bin
+../data/software_antivirus/opencv-4.10.0/platforms/ios/ios_make.bin virus04.bin virus06.bin virus08.bin virus10.bin
+../data/software_antivirus/opencv-4.10.0/data/lbpcascades/lbpcascade_frontalface_improved.xml virus02.bin virus04.bin
+../data/software_antivirus/opencv-4.10.0/cmake/android/android_gradle_projects.cmake virus02.bin
+../data/software_antivirus/opencv-4.10.0/doc/js_tutorials/js_setup/js_setup/js_setup.markdown virus05.bin
+../data/software_antivirus/opencv-4.10.0/doc/tutorials/gpu/gpu-basics-similarity/gpu_basics_similarity.markdown virus07.bin
+../data/software_antivirus/opencv-4.10.0/doc/tutorials/objdetect/aruco_board_detection/aruco_board_detection.markdown virus08.bin
+../data/software_antivirus/opencv-4.10.0/3rdparty/openjpeg/openjp2/t2.h virus04.bin
+../data/software_antivirus/opencv-4.10.0/modules/stitching/src/blenders.cpp virus08.bin virus09.bin
+../data/software_antivirus/opencv-4.10.0/modules/imgproc/CMakeLists.txt virus09.bin
+../data/software_antivirus/opencv-4.10.0/modules/python/bindings/import.bin virus03.bin virus05.bin virus07.bin virus09.bin
+../data/software_antivirus/opencv-4.10.0/modules/core/include/opencv2/core/ocl.hpp virus01.bin
+../data/software_antivirus/opencv-4.10.0/modules/imgcodecs/src/grfmt_exr.cpp virus06.bin virus10.bin
+../data/software_antivirus/opencv-4.10.0/apps/version/version_control.bin virus01.bin virus04.bin virus07.bin virus10.bin
+../data/software_antivirus/opencv-4.10.0/apps/model-diagnostics/model_diagnostics.cpp virus06.bin
+../data/software_antivirus/opencv-4.10.0/include/opencv2/opencv.bin virus03.bin virus05.bin virus07.bin virus09.bin
+../data/software_antivirus/opencv-4.10.0/samples/data/aloeL.jpg virus01.bin virus05.bin
+../data/software_antivirus/opencv-4.10.0/samples/data/ela_original.jpg virus03.bin virus07.bin
+../data/software_antivirus/opencv-4.10.0/samples/va_intel/software.bin virus01.bin virus02.bin virus03.bin virus05.bin virus08.bin
+../data/software_antivirus/opencv-4.10.0/samples/gpu/hog.cpp virus03.bin
+baseline总用时: 12.362963 秒
+parallel总用时: 6.465649 秒
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge7909d0" class="outline-3">
+<h3 id="orge7909d0"><span class="section-number-3">1.5.</span> 总结</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-orga0e9517" class="outline-4">
+<h4 id="orga0e9517"><span class="section-number-4">1.5.1.</span> 性能提升</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+设计的算法在两个任务上相比 baseline 均达到了 2 到 3 倍的提升。若继续增加线程数可能会有更好的提升效果。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf847990" class="outline-4">
+<h4 id="orgf847990"><span class="section-number-4">1.5.2.</span> 改进空间</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+任务二中因为文件数量多，每个新文件都需要重新创建线程，可能会浪费时间。可以增加一个遍历目录的线程作为原本生产者的前置生产者，但这样的实现需要复杂的同步，且会引入新的数据竞争，目前没有想到很好的实现方法。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: yhu</p>
+<p class="date">Created: 2026-01-01 四 23:05</p>
+</div>
+</body>
+</html>
